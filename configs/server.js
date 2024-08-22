@@ -5,7 +5,11 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 
+import User from "../src/user/user.model.js";
+
 import { dbConnection } from "./mongo.js";
+
+import { initialCredentials } from "./credentials.js";
 
 import apiLimiter from '../src/middlewares/validate-PetitionLimit.js';
 
@@ -22,6 +26,7 @@ class Server{
 
         this.middlewares();
         this.connectDB();
+        this.defaultCredentials();
         this.routes();
 
     }
@@ -40,6 +45,22 @@ class Server{
     async connectDB(){
 
         await dbConnection();
+
+    }
+
+    async defaultCredentials(){
+
+        const credentialsCreated = await User.findOne({ username: "dflores"});
+
+        if(!credentialsCreated){
+
+            initialCredentials();
+
+        }else{
+
+            console.log("Credentials have already been created");
+
+        }
 
     }
 
