@@ -10,7 +10,7 @@ export const generateJWT = (uid = '') => {
 
             payload,
 
-            process.env.SECRETPRIVATEKEY,
+            process.env.SECRETORPRIVATEKEY,
 
             {
 

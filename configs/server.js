@@ -22,7 +22,7 @@ class Server{
         this.app = express();
         this.port = process.env.PORT;
 
-        this.authPath = '/GTA-recursos_Humanos/auth';
+        this.authPath = '/GTA-recursos_Humanos/v1/auth';
 
         this.middlewares();
         this.connectDB();
