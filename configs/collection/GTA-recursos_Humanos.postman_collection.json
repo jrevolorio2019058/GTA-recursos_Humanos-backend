@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "2b76c789-9353-44fe-b15e-e3dd7af384a7",
+		"name": "GTA-recursos_Humanos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32787267"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\": \"jrevolorio\",\r\n    \"password\": \"987654\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/GTA-recursos_Humanos/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GTA-recursos_Humanos",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Add User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmM3NzcwZjI2Y2M4YWE5NTlkOWM5NDEiLCJpYXQiOjE3MjQzNTI1MDAsImV4cCI6MTcyNDM1OTcwMH0.kmMZIKbB2RwsSplquRI9BECNa3kW_Yq8J4Av6MYwJ4Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jorge\",\r\n    \"lastname\": \"Revolorio\",\r\n    \"username\": \"jrevolorio\",\r\n    \"email\": \"jrevolorio@gmail.com\",\r\n    \"password\": \"123456\"\r\n    //\"role\": \"SUPPORT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/GTA-recursos_Humanos/v1/user/addUser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GTA-recursos_Humanos",
+								"v1",
+								"user",
+								"addUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmM3NzcwZjI2Y2M4YWE5NTlkOWM5NDEiLCJpYXQiOjE3MjQzNTI1MDAsImV4cCI6MTcyNDM1OTcwMH0.kmMZIKbB2RwsSplquRI9BECNa3kW_Yq8J4Av6MYwJ4Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:3000/GTA-recursos_Humanos/v1/user/viewUsers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GTA-recursos_Humanos",
+								"v1",
+								"user",
+								"viewUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmM3NzcwZjI2Y2M4YWE5NTlkOWM5NDEiLCJpYXQiOjE3MjQzNTI1MDAsImV4cCI6MTcyNDM1OTcwMH0.kmMZIKbB2RwsSplquRI9BECNa3kW_Yq8J4Av6MYwJ4Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jrevolorio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/GTA-recursos_Humanos/v1/user/viewUser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GTA-recursos_Humanos",
+								"v1",
+								"user",
+								"viewUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disabled User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmM3NzcwZjI2Y2M4YWE5NTlkOWM5NDEiLCJpYXQiOjE3MjQzNTc0MTUsImV4cCI6MTcyNDM2NDYxNX0.iNrE2LNvzCz1ofQVlemYbFI_6aOl13GtJYO_u2U6RSk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\": \"paola\",\r\n    \"confirmation\": \"true\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/GTA-recursos_Humanos/v1/user/disabledUser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GTA-recursos_Humanos",
+								"v1",
+								"user",
+								"disabledUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmM3NzcwZjI2Y2M4YWE5NTlkOWM5NDEiLCJpYXQiOjE3MjQzNjEzNzIsImV4cCI6MTcyNDM2ODU3Mn0.2eQg15PxOAHsu-KXdj_YsrpnJxjg2-z2MG019LEH9SY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\": \"jrevolorio\",\r\n    \"password\": \"987654\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/GTA-recursos_Humanos/v1/user/updateUser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GTA-recursos_Humanos",
+								"v1",
+								"user",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
