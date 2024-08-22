@@ -70,3 +70,19 @@ export const findUser = async (req, res) => {
     res.status(200).json({ user });
 
 }
+
+export const disabledUser = async (req, res) => {
+
+    const { username } = req.body;
+
+    await User.findOneAndUpdate({ username }, { status: "INACTIVE" });
+
+    const user = User.findOne({ username });
+
+    res.status(200).json({
+
+        msg: `The user ${username} was successfully disabled`
+
+    })
+
+}

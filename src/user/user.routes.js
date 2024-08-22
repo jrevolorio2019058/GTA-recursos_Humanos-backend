@@ -6,7 +6,8 @@ import {
     
     addUser, 
     viewUsers,
-    findUser
+    findUser,
+    disabledUser
 
 } from "./user.controller.js";
 
@@ -18,6 +19,12 @@ import {
     existUsername 
 
 } from "../helpers/user/validation-user-db.js";
+
+import {
+
+    validateConfirmation
+    
+} from '../helpers/user/validation-user-data.js';
 
 import { validateJWT } from '../middlewares/validate-jwt.js';
 
@@ -92,6 +99,28 @@ router.post(
         validateFields
 
     ], addUser
+
+)
+
+router.delete(
+
+    "/disabledUser",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT"),
+
+        check("username", "Username is required").not().isEmpty(),
+
+        check("username").custom(existUsername),
+
+        check("confirmation").custom(validateConfirmation),
+
+        validateFields
+
+    ], disabledUser
 
 )
 
