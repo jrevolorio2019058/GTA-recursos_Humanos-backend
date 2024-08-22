@@ -86,3 +86,31 @@ export const disabledUser = async (req, res) => {
     })
 
 }
+
+export const updateUser = async (req, res) =>{
+
+    const {_id, ...rest} = req.body;
+    
+    let un = rest.username;
+
+    await User.findOneAndUpdate({username: un}, rest);
+
+    const user = await User.findOne({username: un});
+
+    if(rest.password){
+
+        const salt = bcryptjs.genSaltSync();
+
+        user.password = bcryptjs.hashSync(rest.password, salt);
+
+        await user.save();
+
+    }
+
+    res.status(200).json({
+
+        msg: `${un} user was successfully updated.`
+
+    })
+
+}

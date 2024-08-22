@@ -7,7 +7,8 @@ import {
     addUser, 
     viewUsers,
     findUser,
-    disabledUser
+    disabledUser,
+    updateUser
 
 } from "./user.controller.js";
 
@@ -31,6 +32,8 @@ import { validateJWT } from '../middlewares/validate-jwt.js';
 import { validateFields } from "../middlewares/validate-fields.js";
 
 import { haveRol } from "../middlewares/validate-role.js";
+
+import { validateDataFromUpdateUser } from '../middlewares/specialMiddlewares.js';
 
 const router = Router();
 
@@ -121,6 +124,28 @@ router.delete(
         validateFields
 
     ], disabledUser
+
+)
+
+router.put(
+
+    "/updateUser",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT"),
+
+        check("username", "Username is required to search the user").not().isEmpty(),
+
+        check("username").custom(existUsername),
+
+        validateDataFromUpdateUser,
+
+        validateFields
+
+    ], updateUser
 
 )
 
