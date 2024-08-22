@@ -7,6 +7,8 @@ import morgan from "morgan";
 
 import { dbConnection } from "./mongo.js";
 
+import apiLimiter from '../src/middlewares/validate-PetitionLimit.js';
+
 class Server{
 
     constructor(){
@@ -22,6 +24,7 @@ class Server{
     middlewares(){
 
         this.app.use(express.urlencoded({ extended: false}));
+        this.app.use(apiLimiter);
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(helmet());
