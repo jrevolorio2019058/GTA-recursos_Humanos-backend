@@ -14,6 +14,7 @@ import { initialCredentials } from "./credentials.js";
 import apiLimiter from '../src/middlewares/validate-PetitionLimit.js';
 
 import authRoutes from '../src/auth/auth.routes.js';
+import userRoutes from '../src/user/user.routes.js';
 
 class Server{
 
@@ -23,6 +24,7 @@ class Server{
         this.port = process.env.PORT;
 
         this.authPath = '/GTA-recursos_Humanos/v1/auth';
+        this.userPath = '/GTA-recursos_Humanos/v1/user';
 
         this.middlewares();
         this.connectDB();
@@ -77,6 +79,7 @@ class Server{
     routes(){
 
         this.app.use(this.authPath, authRoutes);
+        this.app.use(this.userPath, userRoutes);
 
     }
 
