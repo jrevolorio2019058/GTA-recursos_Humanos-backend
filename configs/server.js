@@ -9,6 +9,8 @@ import { dbConnection } from "./mongo.js";
 
 import apiLimiter from '../src/middlewares/validate-PetitionLimit.js';
 
+import authRoutes from '../src/auth/auth.routes.js';
+
 class Server{
 
     constructor(){
@@ -16,8 +18,11 @@ class Server{
         this.app = express();
         this.port = process.env.PORT;
 
+        this.authPath = '/GTA-recursos_Humanos/auth';
+
         this.middlewares();
         this.connectDB();
+        this.routes();
 
     }
 
@@ -45,6 +50,12 @@ class Server{
             console.log('Server running on port: ', this.port);
 
         });
+
+    }
+
+    routes(){
+
+        this.app.use(this.authPath, authRoutes);
 
     }
 
