@@ -2,7 +2,12 @@ import { Router } from "express";
 
 import { check } from "express-validator";
 
-import { addUser } from "./user.controller.js";
+import { 
+    
+    addUser, 
+    viewUsers 
+
+} from "./user.controller.js";
 
 import { 
     
@@ -19,6 +24,22 @@ import { validateFields } from "../middlewares/validate-fields.js";
 import { haveRol } from "../middlewares/validate-role.js";
 
 const router = Router();
+
+router.get(
+
+    "/viewUsers",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT"),
+
+        validateFields
+
+    ], viewUsers
+
+)
 
 router.post(
 

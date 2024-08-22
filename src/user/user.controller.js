@@ -38,3 +38,25 @@ export const addUser = async(req, res) => {
     })
 
 }
+
+export const viewUsers = async(req, res) => {
+
+    const { limit, from } = req.query;
+
+    const query = { status: "ACTIVE" };
+
+    const [total, user] = await Promise.all([
+
+        User.countDocuments(query),
+        User.find(query).skip(Number(from)).limit(Number(limit))
+
+    ]);
+
+    res.status(200).json({
+
+        msg: `The ${total} users are:`,
+        user
+
+    })
+
+}
