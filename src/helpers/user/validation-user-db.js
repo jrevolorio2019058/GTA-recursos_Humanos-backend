@@ -14,6 +14,18 @@ export const validationUniqueUsername = async (username = "") => {
 
 };
 
+export const existUsername = async (username = "") => {
+
+    const existentUsername = await User.findOne({ username });
+
+    if(!existentUsername){
+
+        throw new Error(`${username} doesn't exist in DB`);
+
+    }
+
+}
+
 export const validationUniqueEmail = async (email = "") => {
 
     const existentEmail = await User.findOne({ email });

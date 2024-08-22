@@ -60,3 +60,13 @@ export const viewUsers = async(req, res) => {
     })
 
 }
+
+export const findUser = async (req, res) => {
+
+    const { username } = req.body;
+
+    const user = await User.findOne({ username });
+
+    res.status(200).json({ user });
+
+}

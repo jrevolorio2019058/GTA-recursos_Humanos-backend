@@ -5,7 +5,8 @@ import { check } from "express-validator";
 import { 
     
     addUser, 
-    viewUsers 
+    viewUsers,
+    findUser
 
 } from "./user.controller.js";
 
@@ -13,7 +14,8 @@ import {
     
     validationUniqueUsername, 
     validationUniqueEmail,
-    validationRole 
+    validationRole,
+    existUsername 
 
 } from "../helpers/user/validation-user-db.js";
 
@@ -38,6 +40,26 @@ router.get(
         validateFields
 
     ], viewUsers
+
+)
+
+router.get(
+
+    "/viewUser",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT"),
+
+        check("username", "Username is required").not().isEmpty(),
+
+        check("username").custom(existUsername),
+
+        validateFields
+
+    ], findUser
 
 )
 
