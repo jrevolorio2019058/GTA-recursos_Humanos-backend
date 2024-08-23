@@ -6,6 +6,8 @@ import { login } from "./auth.controller.js";
 
 import { validateFields } from "../middlewares/validate-fields.js";
 
+import { correctStatus } from "../helpers/user/validation-user-db.js";
+
 const router = Router();
 
 router.post(
@@ -15,6 +17,8 @@ router.post(
     [
 
         check("username", "Username is required").not().isEmpty(),
+
+        check("username").custom(correctStatus),
 
         check("password", "Password is required").not().isEmpty(),
 

@@ -26,6 +26,28 @@ export const existUsername = async (username = "") => {
 
 }
 
+export const correctStatus = async (username = "") => {
+
+    const correctStatus = await User.findOne({ username });
+
+    console.log(correctStatus);
+
+    if(!correctStatus){
+
+        throw new Error(`${username} doesn't exist in DB`);
+
+    }else{
+
+        if(correctStatus.status != "ACTIVE"){
+        
+            throw new Error(`Your Account is ${correctStatus.status}.`);
+    
+        }
+
+    }
+
+}
+
 export const validationUniqueEmail = async (email = "") => {
 
     const existentEmail = await User.findOne({ email });
