@@ -4,6 +4,8 @@ import Role from "../src/roles/roles.model.js";
 
 import Status from "../src/status/status.model.js";
 
+import UniformSize from "../src/uniformSize/uniformSize.model.js";
+
 import bcryptjs from "bcryptjs";
 
 export const initialCredentials = async () => {
@@ -82,6 +84,88 @@ export const initialCredentials = async () => {
     await LOCKED_STATUS.save();
 
     await SUSPENDED_STATUS.save();
+
+    //Staff
+
+    const xs = new UniformSize({
+
+        size: "XS"
+
+    });
+
+    const s = new UniformSize({
+
+        size: "S"
+
+    });
+
+    const m = new UniformSize({
+
+        size: "M"
+
+    });
+
+    const l = new UniformSize({
+
+        size: "L"
+
+    });
+
+    const xl = new UniformSize({
+
+        size: "XL"
+
+    });
+    
+    const xxl = new UniformSize({
+
+        size: "XXL"
+
+    });
+
+    const xxxl = new UniformSize({
+
+        size: "XXXL"
+
+    });
+
+    const xxxxl = new UniformSize({
+
+        size: "XXXXL"
+
+    });
+
+    await xs.save();
+
+    await s.save();
+
+    await m.save();
+
+    await l.save();
+
+    await xl.save();
+
+    await xxl.save();
+
+    await xxxl.save();
+
+    await xxxxl.save();
+
+    const done = new Status({
+
+        staffStatus: "DONE"
+
+    });
+
+    const not_delireved = new Status({
+
+        staffStatus: "NOT DELIREVED"
+
+    })
+
+    await done.save();
+
+    await not_delireved.save();
 
     console.log("Credentials created successfully");
 
