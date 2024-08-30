@@ -4,7 +4,8 @@ import { check } from "express-validator";
 
 import {
 
-    addStaff
+    addStaff,
+    updateStaff
 
 } from "./staff.controller.js";
 
@@ -28,6 +29,12 @@ import {
 
 import {
 
+    validateDataFromUpdateStaff
+
+} from "../middlewares/specialMiddlewares.js";
+
+import {
+
     validateAge,
     validateDPI
 
@@ -38,7 +45,8 @@ import {
     validateUniformStatus,
     validateUniformSize,
     validateFormatDateHire,
-    validateFormatDateShipping
+    validateFormatDateShipping,
+    validateStaffCode
 
 } from "../helpers/staff/validation-staff-db.js";
 
@@ -102,6 +110,28 @@ router.post(
 
     ], addStaff
 
+);
+
+router.put(
+
+    "/updateStaff",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT", "USER"),
+
+        check("staffCode", "Staff Code is required").not().isEmpty(),
+
+        check("staffCode").custom(validateStaffCode),
+
+        validateDataFromUpdateStaff,  
+
+        validateFields
+
+    ], updateStaff
+    
 );
 
 export default router;

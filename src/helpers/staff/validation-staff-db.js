@@ -2,6 +2,8 @@ import Status from "../../status/status.model.js";
 
 import UniformSize from "../../uniformSize/uniformSize.model.js";
 
+import Staff from "../../staff/staff.model.js";
+
 export const validateUniformStatus = async ( uniform_Status = "" ) => {
 
     const existStatus = await Status.findOne({ staffStatus: uniform_Status });
@@ -120,6 +122,18 @@ export const validateFormatDateShipping = async (shipping_Date = "") => {
     if(!isDateValid){
 
         throw new Error("Formato de fecha incorrecto, formato a seguir: Día/Mes/Año; Ejemplo: 30/08/2024");
+
+    }
+
+}
+
+export const validateStaffCode = async ( staffCode = 0 ) => {
+    
+    const existCode = await Staff.findOne({ code: staffCode});
+
+    if(!existCode){
+
+        throw new Error(`${staffCode} not exist in db`);
 
     }
 

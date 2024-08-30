@@ -1,22 +1,14 @@
-export const validateAge = async( age = "" ) => {
+export const validateAge = async( age = 0 ) => {
 
-    switch(age){
+    if(age < 18){
 
-        case age < 18:
+        throw new Error("Solo se autoriza mayores de edad.");
 
-            throw new Error("Solo se autoriza mayores de edad.");
+    }
 
-            break;
+    if(age > 100){
 
-        case age > 100:
-
-            throw new Error(`La edad: ${age} no es valida para trabajar.`);
-        
-            break;
-
-        default:
-
-            break;
+        throw new Error(`La edad: ${age} no es valida para trabajar.`);
 
     }
 

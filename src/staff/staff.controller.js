@@ -2,6 +2,8 @@ import Staff from "../staff/staff.model.js";
 
 import { withTime } from "../functions/general-funtions.js";
 
+import Change from "../history/changes/changes.model.js";
+
 export const addStaff = async (req, res) =>{
 
     const {
@@ -59,6 +61,37 @@ export const addStaff = async (req, res) =>{
     res.status(200).json({
 
         msg: `Staff con el código: ${code} agregado correctamente.`
+
+    });
+
+}
+
+export const updateStaff = async (req, res) => {
+
+    const {_id, ...rest} = req.body;
+
+    await Staff.findOneAndUpdate({code: rest.staffCode}, rest);
+
+    const staff = await Staff.findOne({ code: rest.staffCode });
+
+    const change = new Change({
+
+        ownerChange: req.user.username,
+        dateChange: Date.now(),
+        class: "Staff",
+        staffFullName: staff.fullName,
+        staffCode: staff.code,
+        staffStore: staff.store,
+        staffPlace: staff.place,
+        action: "Update"
+
+    });
+
+    await change.save();
+
+    res.status(200).json({
+
+        msg: `El Empleado con el código: ${rest.staffCode} fue actualizado correctamente.`,
 
     });
 
