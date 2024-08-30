@@ -8,7 +8,8 @@ import {
     updateStaff,
     deleteStaff,
     getStaff,
-    viewStaff
+    viewStaff,
+    viewStaffForRecruiter
 
 } from "./staff.controller.js";
 
@@ -196,6 +197,24 @@ router.get(
 
     ], viewStaff
     
+)
+
+router.get(
+
+    "/getStaffForRecruiter",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT", "USER"),
+
+        check("recruiter", "Recruiter is required").not().isEmpty(),
+
+        validateFields
+
+    ], viewStaffForRecruiter
+
 )
 
 export default router;

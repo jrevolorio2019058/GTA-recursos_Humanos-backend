@@ -158,3 +158,27 @@ export const viewStaff = async (req, res) => {
      });
 
 }
+
+export const viewStaffForRecruiter = async (req, res) => {
+
+    const { recruiter } = req.body;
+
+    const staff = await Staff.find({ recruiter });
+
+    if(staff.length <= 0){
+
+        res.status(400).json({ msg: `Recruiter ${recruiter} Not Found or No has staff:`});
+
+    }else{
+
+        res.status(200).json({
+
+            msg: `The staff for ${recruiter} is:`,
+    
+            staff
+    
+        });
+
+    }
+
+}
