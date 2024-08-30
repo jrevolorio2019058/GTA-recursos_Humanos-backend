@@ -126,4 +126,20 @@ export const deleteStaff = async (req, res) => {
         
     })
 
+};
+
+export const getStaff = async (req, res) => {
+
+    const { limit, from } = req.query;
+
+    const [total, staff] = await Promise.all([
+
+        Staff.countDocuments({ status: "ON" }),
+
+        Staff.find({ status: "ON" }).skip(Number(from)).limit(Number(limit))
+
+    ]);
+
+    res.status(200).json({ msg: `The ${total} staff are:`, staff });
+
 }

@@ -6,7 +6,8 @@ import {
 
     addStaff,
     updateStaff,
-    deleteStaff
+    deleteStaff,
+    getStaff
 
 } from "./staff.controller.js";
 
@@ -157,6 +158,22 @@ router.delete(
         validateFields
 
     ], deleteStaff
+
+);
+
+router.get(
+
+    "/getStaffs",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT", "USER"),
+
+        validateFields
+
+    ], getStaff
 
 )
 
