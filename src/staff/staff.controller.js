@@ -1,4 +1,4 @@
-import Staff from "../staff/staff.model.js"
+import Staff from "../staff/staff.model.js";
 
 import { withTime } from "../functions/general-funtions.js";
 
@@ -10,7 +10,7 @@ export const addStaff = async (req, res) =>{
         age, 
         email, 
         DPI, 
-        IGGS, 
+        IGSS, 
         code , 
         store, 
         place, 
@@ -40,7 +40,7 @@ export const addStaff = async (req, res) =>{
         age, 
         email, 
         DPI, 
-        IGGS, 
+        IGSS, 
         code, 
         store, 
         place, 

@@ -31,7 +31,7 @@ const StaffSchema = new mongoose.Schema({
 
     },
 
-    IGGS: {
+    IGSS: {
 
         type: Number,
         required: [true, "The IGSS is required"]
@@ -112,4 +112,6 @@ const StaffSchema = new mongoose.Schema({
 
 
 
-})
+});
+
+export default mongoose.model("Staff", StaffSchema);

@@ -22,9 +22,13 @@ export const validateAge = async( age = "" ) => {
 
 }
 
-export const validateDPI = async ( DPI = "") => {
+export const validateDPI = async ( DPI = 0 ) => {
 
-    const length = DPI.length;
+    const toStringDPI = DPI.toString();
+
+    const length = toStringDPI.length;
+
+    console.log(length);
 
     if(length != 13){
 

@@ -35,7 +35,10 @@ import {
 
 import {
 
-    validateUniformStatus
+    validateUniformStatus,
+    validateUniformSize,
+    validateFormatDateHire,
+    validateFormatDateShipping
 
 } from "../helpers/staff/validation-staff-db.js";
 
@@ -57,11 +60,11 @@ router.post(
 
         check('age').custom(validateAge),
 
-        check("email", "Email is required").not().isEmail(),
+        check("email", "Email is required").isEmail(),
 
         check("DPI", "DPI is required").not().isEmpty(),
 
-        check('DPI').custom(validateDPI),
+        check("DPI").custom(validateDPI),
 
         check("IGSS", "IGGS is required").not().isEmpty(),
 
@@ -73,27 +76,27 @@ router.post(
 
         check("hire_Date", "Hire Date is required").not().isEmpty(),
 
-        //Hacer Check de hire_Date al formato que pedira
+        check("hire_Date").custom(validateFormatDateHire),
 
         check("recruiter", "Recruiter is required").not().isEmpty(),
 
         check("uniform_Size", "Uniform Size is required").not().isEmpty(),
 
-        check("uniform_Size").custom(validateUniformStatus),
+        check("uniform_Size").custom(validateUniformSize),
 
         check("shipping_Method", "Shipping Method is required").not().isEmpty(),
 
         check("shipping_Date", "Shipping Date is required").not().isEmpty(),
 
-        //Hacer Check de hire_Date al formato que pedira
+       check("shipping_Date").custom(validateFormatDateShipping),
 
         check("uniform_Status", "Uniform Status is required").not().isEmpty(),
 
-        //Hacer Verificación que sea un status correcto
+        check("uniform_Status").custom(validateUniformStatus),
 
         check("badge_Status", "Badge Status is required").not().isEmpty(),
 
-        //Hacer verificación que sea un status correcto
+        check("badge_Status").custom(validateUniformStatus),
 
         validateFields
 

@@ -15,6 +15,7 @@ import apiLimiter from '../src/middlewares/validate-PetitionLimit.js';
 
 import authRoutes from '../src/auth/auth.routes.js';
 import userRoutes from '../src/user/user.routes.js';
+import staffRoutes from '../src/staff/staff.routes.js';
 
 class Server{
 
@@ -25,6 +26,7 @@ class Server{
 
         this.authPath = '/GTA-recursos_Humanos/v1/auth';
         this.userPath = '/GTA-recursos_Humanos/v1/user';
+        this.staffPath = '/GTA-recursos_Humanos/v1/staff';
 
         this.middlewares();
         this.connectDB();
@@ -80,6 +82,7 @@ class Server{
 
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.userPath, userRoutes);
+        this.app.use(this.staffPath, staffRoutes);
 
     }
 
