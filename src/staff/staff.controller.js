@@ -68,7 +68,7 @@ export const addStaff = async (req, res) =>{
 
 export const updateStaff = async (req, res) => {
 
-    const {_id, ...rest} = req.body;
+    const {_id, status,  ...rest} = req.body;
 
     await Staff.findOneAndUpdate({code: rest.staffCode}, rest);
 
@@ -94,5 +94,36 @@ export const updateStaff = async (req, res) => {
         msg: `El Empleado con el código: ${rest.staffCode} fue actualizado correctamente.`,
 
     });
+
+}
+
+export const deleteStaff = async (req, res) => {
+
+    const { staffCode } = req.body;
+
+    await Staff.findOneAndUpdate({ code: staffCode }, { status: "DELETE" });
+
+    const staff = await Staff.findOne({ code: staffCode });
+
+    const change = new Change({
+
+        ownerChange: req.user.username,
+        dateChange: Date.now(),
+        class: "Staff",
+        staffFullName: staff.fullName,
+        staffCode: staff.code,
+        staffStore: staff.store,
+        staffPlace: staff.place,
+        action: "Delete"
+
+    });
+
+    await change.save();
+
+    res.status(200).json({
+
+        msg: `El Empleado con el Codigo: ${staffCode} fue eliminado correctamente.`,
+        
+    })
 
 }

@@ -5,7 +5,8 @@ import { check } from "express-validator";
 import {
 
     addStaff,
-    updateStaff
+    updateStaff,
+    deleteStaff
 
 } from "./staff.controller.js";
 
@@ -36,7 +37,8 @@ import {
 import {
 
     validateAge,
-    validateDPI
+    validateDPI,
+    validateConfirmation
 
 } from "../helpers/staff/validation-staff-data.js";
 
@@ -133,5 +135,29 @@ router.put(
     ], updateStaff
     
 );
+
+router.delete(
+
+    "/deleteStaff",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT"),
+
+        check("staffCode", "Staff Code is required").not().isEmpty(),
+
+        check("staffCode").custom(validateStaffCode),
+
+        check("confirmation", "Confirmation is required").not().isEmpty(),
+
+        check("confirmation").custom(validateConfirmation),
+
+        validateFields
+
+    ], deleteStaff
+
+)
 
 export default router;

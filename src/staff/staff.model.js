@@ -108,6 +108,14 @@ const StaffSchema = new mongoose.Schema({
         required: [true, "The Badge Status is required"],
         enum: ["DONE", "NOT DELIVERED"]
 
+    },
+
+    status: {
+
+        type: String,
+        enum: ["ON", "DELETE"],
+        default: "ON"
+
     }
 
 

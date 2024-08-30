@@ -29,3 +29,13 @@ export const validateDPI = async ( DPI = 0 ) => {
     }
 
 }
+
+export const validateConfirmation = async( confirmation = "") => {
+
+    if(confirmation.toUpperCase() != "ACEPTO"){
+
+        throw new Error(`Debes de confirmar la eliminación con la palabra : "Acepto"`);
+
+    }
+
+}
