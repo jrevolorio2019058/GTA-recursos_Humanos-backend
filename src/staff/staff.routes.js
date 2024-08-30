@@ -7,7 +7,8 @@ import {
     addStaff,
     updateStaff,
     deleteStaff,
-    getStaff
+    getStaff,
+    viewStaff
 
 } from "./staff.controller.js";
 
@@ -175,6 +176,26 @@ router.get(
 
     ], getStaff
 
+);
+
+router.get(
+
+    "/getStaff",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT", "USER"),
+
+        check("staffCode", "Staff Code is required").not().isEmpty(),
+
+        check("staffCode").custom(validateStaffCode),
+
+        validateFields
+
+    ], viewStaff
+    
 )
 
 export default router;

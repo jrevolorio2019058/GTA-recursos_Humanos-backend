@@ -143,3 +143,18 @@ export const getStaff = async (req, res) => {
     res.status(200).json({ msg: `The ${total} staff are:`, staff });
 
 }
+
+export const viewStaff = async (req, res) => {
+
+    const { staffCode } = req.body;
+
+    const staff = await Staff.findOne({ code: staffCode });
+
+    res.status(200).json({ 
+
+        msg: `The staff with code: ${staffCode} is:`,
+        staff
+
+     });
+
+}
