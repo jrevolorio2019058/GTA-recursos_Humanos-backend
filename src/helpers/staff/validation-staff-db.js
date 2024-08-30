@@ -15,7 +15,7 @@ export const validateUniformStatus = async ( uniform_Status = "" ) => {
 }
 export const validateUniformSize = async ( uniform_Size = "" ) => {
 
-    const existSize = await UniformSize.findOne({ size: uniform_Size });
+    const existSize = await UniformSize.findOne({ size: uniform_Size.toUpperCase() });
 
     if(!existSize){
 
