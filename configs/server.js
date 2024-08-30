@@ -17,6 +17,7 @@ import authRoutes from '../src/auth/auth.routes.js';
 import userRoutes from '../src/user/user.routes.js';
 import staffRoutes from '../src/staff/staff.routes.js';
 import logRoutes from "../src/history/log/log.routes.js";
+import changeRoutes from "../src/history/changes/change.routes.js";
 
 class Server{
 
@@ -29,6 +30,7 @@ class Server{
         this.userPath = '/GTA-recursos_Humanos/v1/user';
         this.staffPath = '/GTA-recursos_Humanos/v1/staff';
         this.logPath = '/GTA-recursos_Humanos/v1/log';
+        this.changePath = '/GTA-recursos_Humanos/v1/change';
 
         this.middlewares();
         this.connectDB();
@@ -86,6 +88,7 @@ class Server{
         this.app.use(this.userPath, userRoutes);
         this.app.use(this.staffPath, staffRoutes);
         this.app.use(this.logPath, logRoutes);
+        this.app.use(this.changePath, changeRoutes);
 
     }
 
