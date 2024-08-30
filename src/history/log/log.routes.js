@@ -4,7 +4,8 @@ import { check } from "express-validator";
 
 import {
 
-    viewLogs
+    viewLogs,
+    logout
 
 } from "../log/log.controller.js";
 
@@ -41,6 +42,22 @@ router.get(
         validateFields
 
     ], viewLogs
+
+)
+
+router.post(
+
+    "/logout",
+
+    [
+
+        validateJWT,
+
+        haveRol("ADMIN", "SUPPORT", "USER"),
+
+        validateFields
+
+    ], logout
 
 )
 
