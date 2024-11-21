@@ -24,7 +24,7 @@ class Server{
     constructor(){
 
         this.app = express();
-        this.port = process.env.PORT;
+        this.port = process.env.PORT || 3000;
 
         this.authPath = '/GTA-recursos_Humanos/v1/auth';
         this.userPath = '/GTA-recursos_Humanos/v1/user';
